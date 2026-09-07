@@ -23,16 +23,36 @@ git push -u origin main
 ```
 `USERNAME` va `REPO_NOMI`ni o'zingiznikiga almashtiring.
 
-## Deploy qilish (bepul variantlar)
+## Vercel'ga deploy qilish
+
+Loyihada `vercel.json` fayli bor — bu statik sayt ekanini aniq belgilaydi, qo'shimcha build sozlamasi shart emas.
+
+**1-usul: Vercel dashboard orqali (eng oson)**
+1. GitHub'ga push qilib bo'lgach, [vercel.com](https://vercel.com)'ga GitHub akkaunt bilan kiring
+2. "Add New..." → "Project" ni bosing
+3. Repo'ingizni tanlang (`REPO_NOMI`)
+4. Framework sifatida "Other" avtomatik aniqlanadi — hech narsani o'zgartirmasdan "Deploy" tugmasini bosing
+5. Bir necha soniyada `https://REPO_NOMI.vercel.app` manzili tayyor bo'ladi
+
+**2-usul: Vercel CLI orqali (GitHub'ga push qilmasdan ham ishlaydi)**
+```bash
+npm install -g vercel
+cd business-site
+vercel login
+vercel --prod
+```
+Terminal savollariga javob bering (loyiha nomi, papka — default javoblar yetarli), va deploy avtomatik boshlanadi.
+
+**Keyingi o'zgarishlarni chiqarish:**
+- GitHub orqali bo'lsa: `git push` qilishning o'zi yetarli — Vercel avtomatik qayta deploy qiladi
+- CLI orqali bo'lsa: har safar `vercel --prod` buyrug'ini qayta ishga tushiring
+
+## Muqobil variantlar (agar kerak bo'lsa)
 
 **GitHub Pages:**
 1. Repo → Settings → Pages
 2. "Branch" qismida `main` ni tanlang, papka: `/root`
 3. Bir necha daqiqadan so'ng `https://USERNAME.github.io/REPO_NOMI/` manzilida ishga tushadi
-
-**Vercel:**
-1. vercel.com'ga GitHub akkaunt bilan kiring
-2. "New Project" → repo'ni tanlang → Deploy (sozlamalarni o'zgartirish shart emas)
 
 **Netlify:**
 1. netlify.com → "Add new site" → "Import an existing project"
